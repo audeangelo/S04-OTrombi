@@ -1,0 +1,2 @@
+- git + repo
+- installation: npm, express, ejs, nodemon

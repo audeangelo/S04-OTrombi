@@ -1,0 +1,16 @@
+{
+  "name": "cours_kimchi",
+  "version": "1.0.0",
+  "description": "Bonjour, nous sommes une école qu'elle est bien, et nous voulons un outil pour faciliter les contacts entre étudiants.\r Nous aimerions donc pouvoir lister les promotions ainsi que les étudiants qui les composent,\r mais aussi accéder aux détails d'un étudiant, photo de profil comprise.\r L'accès aux profils serait libre et gratuit.\r Dans un second temps l'outil pourrait servir à éditer les profils et promotions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
