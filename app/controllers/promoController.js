@@ -6,6 +6,12 @@ const promoController = {
       promos, //* promos: promos
     });
   },
+  promoDetail: (request, response) => {
+    const id = request.params.id;
+
+    console.log(id);
+    response.render('promoDetail.ejs');
+  },
 };
 
 module.exports = promoController;
