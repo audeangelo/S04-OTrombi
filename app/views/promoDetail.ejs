@@ -1,16 +1,21 @@
 <%- include("partials/header.ejs") %>
 
     <main>
-        <h1>Promo : Zenith</h1>
+        <h1>Promo : <%= promo.name%>
+        </h1>
 
 
-        <p>Github : <a href="https://github.com/O-clock-Zenith">https://github.com/O-clock-Zenith</a></p>
+        <p>Github : <a href="<%= promo.github_organization%>">
+                <%= promo.github_organization%>
+            </a></p>
         <nav>
             <ul>
                 <li><a href="students.html">Liste des étudiants</a></li>
                 <li><a href="promo_edit.html">Modifier la promo</a></li>
             </ul>
         </nav>
+
+        <img src="<%= promo.github_organization %>.png" alt="">
 
     </main>
     <%- include("partials/footer.ejs") %>
