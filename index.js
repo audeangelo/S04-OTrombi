@@ -3,11 +3,15 @@ const app = express();
 
 require('dotenv').config();
 
-console.log(process.env.PORT);
+const router = require('./app/router.js');
 
-app.set('views', 'views');
+app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
+app.use(router);
+
 app.listen(process.env.PORT, () => {
-  console.log(`http:localhost:${process.env.PORT}`);
+  console.log(`http://localhost:${process.env.PORT}`);
 });
