@@ -11,6 +11,11 @@
                         <%= student.first_name %>
                             <%= student.last_name%>
                     </a>
+                    <figure>
+                        <img src="<%= student.profile_picture_url %>" alt="">
+                        <figcaption><%= student.first_name %>
+                            <%= student.last_name%></figcaption>
+                    </figure>
                     
                 </li>
                 <%}%>
