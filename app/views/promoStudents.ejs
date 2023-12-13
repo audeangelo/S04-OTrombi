@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+
+    <main>
+        <h1>Liste des étudiants de la promo : <%= foundPromo.name%>
+        </h1>
+        <ul class="cards">
+
+            <% for(const student of students) {%>
+                <li class="card">
+                    <a href="#">
+                        <%= student.first_name %>
+                            <%= student.last_name%>
+                    </a>
+                </li>
+                <%}%>
+
+        </ul>
+
+    </main>
+
+    <%- include("partials/footer.ejs") %>
