@@ -1,10 +1,10 @@
 const {Client} = require('pg')
 
-const DB_URL = 'postgres://etudiant:js4life@pg.oclock.lan:5432/trombi'
-
 //* postgres://USERNAME:MDP@HOST:PORT/DATABASE
 
-const client = new Client(DB_URL)
+require('dotenv').config();
+
+const client = new Client(process.env.DB_URL)
 
 //* On connecte le client -> créer un tunnel entre notre machine et la BDD
 client.connect()
@@ -12,8 +12,10 @@ client.connect()
 let id=722
 //* `SELECT * from "promo" WHERE "id"='${id}'`
 
+let sql = `delete from "student"`
+//* SELECT * FROM "student" LIMIT 10
 //* Methode 1: callback
-client.query(`SELECT * FROM "student" WHERE "first_name" ILIKE 'al%'`, (error, result) => {
+client.query(sql, (error, result) => {
     if (error) {
         console.log(error);
     } else {
