@@ -1,32 +1,66 @@
-const promos = require('../../data/promos.json');
-//* on require les fichiers données dont on a besoin
+//* require('dotenv').config()
+
+const {Client} = require('pg')
+
+const client = new Client(process.env.DB_URL_VM)
+
+client.connect()
 
 const promoController = {
   promosList: (request, response) => {
-    //* je renvoie le tableau de toutes les promos en données
-    response.render('promos.ejs', {
-      promos,
-    });
+
+    //* methode 1 avec la callback
+    //* problemen la callback gere l'erreur et le resultat en meme temps
+    /* client.query(`SELECT * FROM "promo"`, (error, results) => {
+      if (error) {
+        console.log(error);
+        response.status(500).render('404')
+      } else {
+        const promos = results.rows
+        response.render('promos.ejs', {
+          promos
+        });
+      }
+      // client.end()
+    }) */
+    //* methode 2 avec promesse then...catch
+    client.query(`SELECT * FROM "promo"`).then((results) => {
+      const promos = results.rows
+      response.render('promos.ejs', {
+        promos
+      })
+    }).catch((error) => {
+      console.log(error);
+      response.status(500).send('Erreur de la base de donnée')
+    })
   },
   promoDetail: (request, response, next) => {
-    //* je récupere l'id passé en parametre de l'url (route)
     const id = request.params.id;
-    //* trouve la promo qui correspond à l'id passé dans la route
-    //! ici id renvoie un string et non un number, donc on parseInt pour bien etre sur de comparer les bons types !
-    const foundPromo = promos.find((promo) => {
+
+    client.query(`SELECT * FROM "promo" WHERE id='${id}'`).then((results) => {
+      const promo = results.rows[0]
+      if (promo) {
+        response.render('promoDetail.ejs', {
+          promo
+        });
+      } else {
+        next()
+      }
+    }).catch(error => {
+      console.log(error);
+      response.status(500).send('Erreur de la base de donnée')
+    })
+
+    /* const foundPromo = promos.find((promo) => {
       return promo.id === parseInt(id);
     });
-
-    //* si tu trouves une promo, fait un render de la page "promoDetail" et envoie lui la donnée foundPromo
-    //* soit la promo correspondante
     if (foundPromo) {
       response.render('promoDetail.ejs', {
         promo: foundPromo,
       });
     } else {
-      //* si foundPromo est undefined, continue dans le router, donc arrivera à la page 404
       next();
-    }
+    } */
   },
 };
 
