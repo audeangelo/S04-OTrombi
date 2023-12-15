@@ -1,22 +1,15 @@
-const { Client } = require('pg');
+const client = require('../db_client.js');
 
-const client = new Client(process.env.DB_URL);
-
-client.connect();
+const dataMapper = require('../dataMapper.js');
 
 const promoController = {
   promosList: async (request, response) => {
-    //* on a créer une fonction asynchrone en mettant async
     try {
-      //* recupere la donnée grace à await sur la promesse
-      const results = await client.query(`SELECT * FROM "promo"`);
-      const promos = results.rows;
+      const promos = await dataMapper.findAllPromos();
       response.render('promos.ejs', {
         promos,
       });
     } catch (error) {
-      //* catch me permet de recuperer l'erreur de la traiter
-      //* ca evite que le serveur crash
       console.log(error);
       response.status(500).send('Erreur de la base de donnée');
     }

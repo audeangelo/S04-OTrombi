@@ -1,8 +1,4 @@
-const { Client } = require('pg');
-
-const client = new Client(process.env.DB_URL);
-
-client.connect();
+const client = require('../db_client');
 
 const studentController = {
   studentListByPromo: async (request, response, next) => {
