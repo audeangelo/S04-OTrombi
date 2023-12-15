@@ -1,23 +1,15 @@
-const client = require('../db_client');
+const dataMapper = require('../dataMapper');
 
 const studentController = {
   studentListByPromo: async (request, response, next) => {
-    //* j'ai besoin de faire 2 requetes pour envoyer :
-    //* la promo trouvé : pour afficher son nom
-    //* la liste des etudiants de la promo concerné
-
     try {
       const promoId = request.params.promoId;
       //* 1ere requete
-      let sql = `SELECT * FROM "promo" WHERE "id"='${promoId}'`;
-      const results = await client.query(sql);
-      const promo = results.rows[0];
+      const promo = await dataMapper.findOnePromo(promoId);
       //*---------
 
       //* 2eme requete
-      let sqlStudents = `SELECT * FROM "student" WHERE "promo_id"='${promoId}'`;
-      const studentResults = await client.query(sqlStudents);
-      const studentsOfPromo = studentResults.rows;
+      const studentsOfPromo = await dataMapper.findStudentsByPromo(promoId);
       //*----------
 
       if (promo) {

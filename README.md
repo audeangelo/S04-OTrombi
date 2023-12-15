@@ -188,3 +188,4 @@ async promoList(req, res) {
 Bah, oui, mais et pour l'erreur ? Je vous laisse chercher. Allez, un petit indice : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/try...catch
 
 </details>
+
