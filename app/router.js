@@ -5,6 +5,7 @@ const router = express.Router();
 const mainController = require('./controllers/mainController');
 const promoController = require('./controllers/promoController');
 const studentController = require('./controllers/studentController');
+const adminController = require('./controllers/adminController');
 
 router.get('/', mainController.homePage);
 
@@ -12,6 +13,8 @@ router.get('/promos', promoController.promosList);
 router.get('/promo/:id', promoController.promoDetail);
 
 router.get('/promo/:promoId/students', studentController.studentListByPromo);
+
+router.get('/admin/addStudent', adminController.showAddStudent);
 
 router.use(mainController.errorPage);
 
