@@ -5,6 +5,16 @@
         <h2>Bienvenue sur le trombinoscope de l'école O'clock</h2>
         <a href="/promos">Voir la liste de promos</a>
         <a href="/admin/addStudent">Ajouter un étudiant</a>
+
+        <div>
+            <form action="/login" method="post">
+                <label for="login">Nom utilisateur</label>
+                <input type="text" name="login" id="login">
+                <input type="submit" value="Connexion">
+            </form>
+        </div>
     </main>
+
+
 
     <%- include("partials/footer.ejs") %>

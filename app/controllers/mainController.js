@@ -1,5 +1,6 @@
 const mainController = {
   homePage: (request, response) => {
+    console.log(request.session);
     response.render('home.ejs');
   },
   errorPage: (request, response) => {
