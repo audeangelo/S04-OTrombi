@@ -15,6 +15,7 @@ router.get('/promo/:id', promoController.promoDetail);
 router.get('/promo/:promoId/students', studentController.studentListByPromo);
 
 router.get('/admin/addStudent', adminController.showAddStudent);
+router.post('/admin/addStudent', adminController.addStudent)
 
 router.use(mainController.errorPage);
 
