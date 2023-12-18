@@ -14,7 +14,7 @@ app.use(express.static('public'));
 //* ce middleware permettra d'accéder à request.session sur toutes les routes
 app.use(
   session({
-    secret: 'keyboard cat', //* dans le fichier .env
+    secret: 'keyboard cat', //! A METTRE dans le fichier .env !!!!!!!!!!!!
     resave: true,
     saveUninitialized: true, //* il se crée automatiquement dés la 1ere request
     cookie: {
