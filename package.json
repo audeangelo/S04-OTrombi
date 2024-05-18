@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:reset": "psql -U trombi -d trombi -f ./data/create_db.sql",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "npm run compile && node index.js",
+    "compile": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
